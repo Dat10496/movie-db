@@ -13,6 +13,8 @@ import { Button, Typography } from "@mui/material";
 
 function SwiperBox({ value, label }) {
   const [movies, setMovies] = useState();
+
+  //eslint-disable-next-line
   const [page, setPage] = useState(1);
 
   useEffect(() => {

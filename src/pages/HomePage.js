@@ -1,26 +1,19 @@
 import { React, useState, useEffect, memo } from "react";
-import MovieCard from "../components/MovieCard";
-import {
-  Alert,
-  Box,
-  Grid,
-  Pagination,
-  PaginationItem,
-  Stack,
-} from "@mui/material";
-import { Link as RouterLink, useParams } from "react-router-dom";
-import apiService from "../app/apiService";
-import GenresList from "../components/GenresList";
-import { API_KEY } from "../app/config";
-import LoadingScreen from "../components/LoadingScreen";
-import TrailerIntro from "../components/TrailerIntro";
+import { Alert, Box, Stack } from "@mui/material";
+import { useParams } from "react-router-dom";
+
 import SwiperBox from "../components/SwipperBox";
-import { ELEMENT_NAV } from "../app/config";
+import LoadingScreen from "../components/LoadingScreen";
+import apiService from "../app/apiService";
+import { ELEMENT_NAV, API_KEY } from "../app/config";
 
 function HomePages() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  // eslint-disable-next-line
   const [storageData, setStorageData] = useState([]);
+  // eslint-disable-next-line
   const [totalPage, setTotalPage] = useState();
 
   const { name, page } = useParams();

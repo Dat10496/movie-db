@@ -6,7 +6,6 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import { DOMAIN_IMG } from "../app/config";
 import "./MovieCard.css";
-import useAuth from "../hooks/useAuth";
 
 export default function MovieCard({ removeFavMovie, movie, location }) {
   const [content, setContent] = useState("none-display");

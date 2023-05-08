@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, EffectCoverflow } from "swiper";
 import { Alert, Box, Typography } from "@mui/material";
@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 import useAuth from "../hooks/useAuth";
 import FavoriteMovieCard from "../components/FavoriteMovieCard";
 
-function FavoriteMovie() {
+function FavoriteMoviePage() {
   const { favoriteMovie } = useAuth();
   const location = useLocation();
   const { removeFavMovie } = useAuth();
@@ -68,4 +68,4 @@ function FavoriteMovie() {
   );
 }
 
-export default FavoriteMovie;
+export default FavoriteMoviePage;
