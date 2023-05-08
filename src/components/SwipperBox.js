@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination } from "swiper";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -13,9 +14,10 @@ import { Button, Typography } from "@mui/material";
 
 function SwiperBox({ value, label }) {
   const [movies, setMovies] = useState();
-
   //eslint-disable-next-line
   const [page, setPage] = useState(1);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +32,11 @@ function SwiperBox({ value, label }) {
 
   return (
     <>
-      <Button variant="outlined" color="lightly">
+      <Button
+        variant="outlined"
+        color="lightly"
+        onClick={() => navigate(`/category/${value}`)}
+      >
         <Typography
           sx={{
             "&: hover": {
@@ -48,16 +54,15 @@ function SwiperBox({ value, label }) {
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
-        spaceBetween={5}
+        spaceBetween={1}
         slidesPerView={5}
-        slidesPerGroup={2}
+        slidesPerGroup={1}
         coverflowEffect={{
-          rotate: 10,
+          rotate: 6,
           stretch: 0,
           depth: 50,
           modifier: 1,
         }}
-        pagination={true}
         modules={[EffectCoverflow, Pagination]}
       >
         {movies?.data?.results?.map((e) => (

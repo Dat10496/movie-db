@@ -25,7 +25,7 @@ function FavoriteMoviePage() {
           },
         }}
         color="lightly.main"
-        fontSize={20}
+        fontSize={26}
         fontWeight={600}
       >
         Favorite Movie
@@ -34,18 +34,17 @@ function FavoriteMoviePage() {
       {favoriteMovie.length && (
         <Swiper
           effect={"coverflow"}
-          grabCursor={true}
-          spaceBetween={5}
+          spaceBetween={2}
           slidesPerView={5}
-          slidesPerGroup={2}
+          slidesPerGroup={1}
           coverflowEffect={{
-            rotate: 10,
+            rotate: 0,
             stretch: 0,
             depth: 50,
             modifier: 1,
           }}
-          pagination={true}
-          modules={[EffectCoverflow, Pagination]}
+          centeredSlides={true}
+          modules={[EffectCoverflow]}
         >
           {favoriteMovie?.map((movieId) => (
             <SwiperSlide key={movieId}>

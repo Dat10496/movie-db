@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage";
 import DetailPage from "../pages/DetailPage";
 import SignInPage from "../pages/SignInPage";
 import FavoriteMoviePage from "../pages/FavoriteMoviePage";
+import CategoryPage from "../pages/CategoryPage";
 import AuthRequire from "./AuthRequire";
 import MainLayout from "../layouts/MainLayout";
 
@@ -27,8 +28,10 @@ const Router = () => {
           <Route path="/genres/:name" element={<HomePage />} />
           <Route path="/genres/:name/page/:page" element={<HomePage />} />
           <Route path="/favorite-movie" element={<FavoriteMoviePage />} />
+          <Route path="/category/:value" element={<CategoryPage />} />
         </Route>
 
+        <Route path="/category/:value/movies/:id" element={<DetailPage />} />
         <Route path="/favorite-movie/movies/:id" element={<DetailPage />} />
         <Route path="/movies/:id" element={<DetailPage />} />
 

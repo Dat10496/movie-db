@@ -2,14 +2,22 @@ import { React, useEffect, useState } from "react";
 import InputBase from "@mui/material/InputBase";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import { Paper, alpha, Divider, Typography } from "@mui/material";
+import {
+  alpha,
+  Divider,
+  Pagination,
+  PaginationItem,
+  Typography,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import apiService from "../app/apiService";
 import { Link } from "react-router-dom";
-import { API_KEY } from "../app/config";
+
+import apiService from "../app/apiService";
+import { API_KEY, DOMAIN_IMG } from "../app/config";
 import { Box } from "@mui/system";
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  width: "100%",
   color: "white",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
@@ -27,14 +35,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const style = {
-  position: "relative",
-  top: "45%",
-  left: "50%",
-  backgroundColor: "#0d253f",
+  position: "absolute",
+  top: 0,
+  left: 0,
+  backgroundColor: "#0c0d0d",
   color: "white",
-  transform: "translate(-50%, -50%)",
-  with: 300,
-  height: 550,
+  width: "100%",
+  height: "100%",
   p: 1,
   textDecoration: "none",
 };
@@ -67,8 +74,16 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 function SearchParams({ handleCloseSearch }) {
   let [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
 
   const [storageData, setStorageData] = useState([]);
+
+  const limit = 10;
+  const offset = limit * (page - 1);
+
+  const handleChangePage = (event, value) => {
+    setPage(value);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,7 +102,7 @@ function SearchParams({ handleCloseSearch }) {
   }, [query]);
 
   return (
-    <Paper elevation={24} sx={style}>
+    <Box sx={style}>
       <Search
         value={searchParams.get("query") || ""}
         onChange={(event) => {
@@ -127,19 +142,57 @@ function SearchParams({ handleCloseSearch }) {
           color: "white",
         }}
       >
-        {storageData.map((movie) => (
-          <Typography
+        {storageData?.slice(offset, offset + limit).map((movie) => (
+          <Box
             key={movie.id}
-            component={Link}
-            to={`/movies/${movie.id}`}
-            sx={{ textDecoration: "none", color: "white" }}
-            onClick={handleCloseSearch}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              mb: 1,
+            }}
           >
-            {movie.title}
-          </Typography>
+            <Typography
+              component={Link}
+              to={`/movies/${movie.id}`}
+              sx={{ textDecoration: "none", color: "white" }}
+              onClick={handleCloseSearch}
+            >
+              {movie.title}
+            </Typography>
+
+            <img
+              src={`${DOMAIN_IMG}${movie.poster_path}`}
+              alt={movie.title}
+              width="50px"
+              height="50px"
+            />
+          </Box>
         ))}
       </Box>
-    </Paper>
+
+      {query && (
+        <Box
+          sx={{
+            justifyContent: "center",
+            display: "flex",
+          }}
+        >
+          <Pagination
+            count={Math.ceil(storageData.length / limit)}
+            variant="outlined"
+            color="lightly"
+            sx={{
+              "& .MuiPaginationItem-root": {
+                color: "#fff",
+              },
+            }}
+            page={page}
+            onChange={handleChangePage}
+          />
+        </Box>
+      )}
+    </Box>
   );
 }
 

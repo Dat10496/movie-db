@@ -33,7 +33,7 @@ export default function MovieCard({ removeFavMovie, movie, location }) {
           position: "relative",
         }}
         component={Link}
-        to={name ? `/genres/${name}/movies/${movie.id}` : `movies/${movie.id}`}
+        to={`movies/${movie.id}`}
         id={movie.id}
       >
         <img

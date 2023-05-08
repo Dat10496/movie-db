@@ -62,8 +62,6 @@ function HomePages() {
         <Alert severity="error">{error}</Alert>
       ) : (
         <>
-          {/* <TrailerIntro /> */}
-
           <Box padding={1}>
             {ELEMENT_NAV.map((e) => (
               <Box key={e.value} height={460} id={e.value}>

@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { Alert, Button, Typography } from "@mui/material";
+import { Alert, Button, Chip, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { Box } from "@mui/system";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -75,6 +75,7 @@ export default function DetailPage() {
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                   position: "relative",
+                  border: "1px solid red",
                 }}
               >
                 <div className="faded-detail-box">
@@ -133,6 +134,18 @@ export default function DetailPage() {
                           {movieDetail.release_date}
                         </Typography>
                       </Typography>
+
+                      <Box sx={{ display: "flex" }}>
+                        {movieDetail?.genres.map((genre) => (
+                          <Chip
+                            key={genre.id}
+                            label={genre.name}
+                            color="primary"
+                            variant="outlined"
+                            sx={{ backgroundColor: "tertiary.main", mr: 0.5 }}
+                          />
+                        ))}
+                      </Box>
 
                       <Typography
                         color="lightly.main"

@@ -4,10 +4,11 @@ import { useState } from "react";
 
 import "./NavBar.css";
 import { ELEMENT_NAV } from "../app/config";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 function NavBar() {
   const [openMenu, setOpenMenu] = useState(null);
+  const { value } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -32,27 +33,28 @@ function NavBar() {
           },
         }}
       >
-        {location.pathname !== "/favorite-movie" && (
-          <>
-            {ELEMENT_NAV.map((e, index) => (
-              <a key={index} href={`#${e.value}`} className="link-category">
-                <Typography
-                  sx={{
-                    "&:hover": {
-                      cursor: "pointer",
-                      color: "fourthly.main",
-                    },
-                  }}
-                  variant="subtitle2"
-                  fontWeight={600}
-                  fontSize={16}
-                >
-                  {e.title}
-                </Typography>
-              </a>
-            ))}
-          </>
-        )}
+        {location.pathname !== "/favorite-movie" ||
+          (location.pathname === `/category/${value}` && (
+            <>
+              {ELEMENT_NAV.map((e, index) => (
+                <a key={index} href={`#${e.value}`} className="link-category">
+                  <Typography
+                    sx={{
+                      "&:hover": {
+                        cursor: "pointer",
+                        color: "fourthly.main",
+                      },
+                    }}
+                    variant="subtitle2"
+                    fontWeight={600}
+                    fontSize={16}
+                  >
+                    {e.title}
+                  </Typography>
+                </a>
+              ))}
+            </>
+          ))}
       </Box>
 
       {location.pathname !== "/favorite-movie" && (
