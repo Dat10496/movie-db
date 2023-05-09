@@ -20,7 +20,7 @@ export default function DetailPage() {
   const [controlAddFavMovie, setControlAddFavMovie] = useState(false);
   const [movieDetail, setMovieDetail] = useState([]);
   const [error, setError] = useState("");
-  // console.log(controlAddFavMovie);
+
   const { id } = useParams();
   const auth = useAuth();
   const { favoriteMovie, addFavMovie } = auth;
@@ -40,7 +40,6 @@ export default function DetailPage() {
         setMovieDetail(response.data);
       } catch (error) {
         setError(error.message);
-        console.log(error, "error");
       }
       setLoading(false);
     };
@@ -68,28 +67,28 @@ export default function DetailPage() {
             <>
               <Box
                 sx={{
-                  width: "100%",
-                  height: "100%",
-                  minHeight: "100vh",
+                  width: { md: "100%", xs: "100%" },
+                  minHeight: { md: "100vh", xs: 900 },
                   backgroundImage: `url("${DOMAIN_BACKDROP}${movieDetail.backdrop_path}")`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                   position: "relative",
-                  border: "1px solid red",
                 }}
               >
                 <div className="faded-detail-box">
                   <Box
                     sx={{
                       display: "flex",
-                      width: "85%",
+                      width: { md: "85%", xs: "100%" },
+                      height: { xs: "100%" },
                       justifyContent: "space-evenly",
                       alignItems: "center",
+                      flexDirection: { xs: "column", md: "row" },
                     }}
                   >
                     <Box
                       component="img"
-                      sx={{ height: 400, borderRadius: 3 }}
+                      sx={{ height: { md: 400, xs: 300 }, borderRadius: 3 }}
                       src={`${DOMAIN_IMG}${movieDetail.poster_path}`}
                       alt={movieDetail.title}
                     />
@@ -122,18 +121,20 @@ export default function DetailPage() {
                         </Button>
                       </Box>
 
-                      <Typography
-                        fontSize={15}
-                        fontStyle="italic"
-                        color="fifthly.lighter"
-                        fontWeight={200}
-                        sx={{ display: "flex", alignItems: "center" }}
-                      >
-                        Date Release:{" "}
-                        <Typography color="sixthly.main" ml={0.5}>
+                      <Box display="flex" alignItems="center">
+                        <Typography
+                          fontSize={15}
+                          fontStyle="italic"
+                          color="fifthly.lighter"
+                          fontWeight={200}
+                          sx={{ display: "flex", alignItems: "center" }}
+                        >
+                          Date Release:
+                        </Typography>
+                        <Typography ml={0.5} color="sixthly.main">
                           {movieDetail.release_date}
                         </Typography>
-                      </Typography>
+                      </Box>
 
                       <Box sx={{ display: "flex" }}>
                         {movieDetail?.genres.map((genre) => (
@@ -164,7 +165,7 @@ export default function DetailPage() {
                           alignItems: "center",
                           justifyContent: "space-between",
                           width: 320,
-                          display: { sm: "flex", xs: "none" },
+                          display: "flex",
                         }}
                       >
                         <Box
@@ -220,7 +221,6 @@ export default function DetailPage() {
                           onClick={() => setOpenTrailer(true)}
                         >
                           <YouTubeIcon fontSize="large" />
-
                           <Typography fontSize={14} fontWeight={600}>
                             Trailer
                           </Typography>

@@ -7,13 +7,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+import "./TrailerMovie.css";
 import apiService from "../app/apiService";
 import { API_KEY } from "../app/config";
 import LoadingScreen from "../components/LoadingScreen";
 
 function TrailerMovie({ open, handleClose, movieId }) {
   const [dataVideo, setDataVideo] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -32,6 +33,7 @@ function TrailerMovie({ open, handleClose, movieId }) {
         setIsLoading(false);
       } catch (error) {
         setError(error.response.data.status_message);
+        setIsLoading(false);
       }
     };
 
@@ -39,63 +41,66 @@ function TrailerMovie({ open, handleClose, movieId }) {
   }, [movieId]);
 
   return (
-    <Modal
-      sx={{
-        backgroundColor: "transparent",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-      open={open}
-      onClose={handleClose}
-    >
+    <>
       {isLoading ? (
         <LoadingScreen />
       ) : (
         <>
-          {error ? (
-            <Alert severity="error">{error}</Alert>
-          ) : (
-            <>
-              {dataVideo.length === 0 ? (
-                <Alert severity="error">There is not available video</Alert>
-              ) : (
-                <Box
-                  sx={{
-                    width: 560,
-                    height: 325,
-                  }}
-                >
-                  <Swiper
-                    cssMode={true}
-                    navigation={true}
-                    mousewheel={true}
-                    keyboard={true}
-                    modules={[Navigation, Mousewheel, Keyboard]}
-                    className="mySwiper"
+          <Modal
+            sx={{
+              backgroundColor: "transparent",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            open={open}
+            onClose={handleClose}
+          >
+            {error ? (
+              <Alert severity="error">{error}</Alert>
+            ) : (
+              <>
+                {dataVideo.length === 0 ? (
+                  <Alert severity="error">There is not available video</Alert>
+                ) : (
+                  <Box
+                    sx={{
+                      width: { md: 560, xs: "100%" },
+                      height: 325,
+                    }}
                   >
-                    {dataVideo.map((video) => (
-                      <SwiperSlide key={video.key}>
-                        <Box>
-                          <iframe
-                            width="560"
-                            height="325"
-                            src={`https://www.youtube.com/embed/${video.key}`}
-                            title="YouTube video player"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                          ></iframe>
-                        </Box>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                </Box>
-              )}
-            </>
-          )}
+                    <Swiper
+                      cssMode={true}
+                      navigation={true}
+                      mousewheel={true}
+                      keyboard={true}
+                      modules={[Navigation, Mousewheel, Keyboard]}
+                      className="mySwiper"
+                    >
+                      {dataVideo.map((video) => (
+                        <SwiperSlide key={video.key}>
+                          <Box>
+                            <iframe
+                              width="560"
+                              height="325"
+                              src={`https://www.youtube.com/embed/${video.key}`}
+                              title="YouTube video player"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              allowFullScreen
+                              className="embed-video"
+                            ></iframe>
+                          </Box>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </Box>
+                )}
+              </>
+            )}
+          </Modal>
         </>
       )}
-    </Modal>
+    </>
   );
 }
 

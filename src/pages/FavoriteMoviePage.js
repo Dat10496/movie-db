@@ -18,33 +18,38 @@ function FavoriteMoviePage() {
 
   return (
     <Box sx={{ minHeight: "70vh", p: 2 }}>
-      <Typography
-        sx={{
-          "&: hover": {
-            color: "fourthly.main",
-          },
-        }}
-        color="lightly.main"
-        fontSize={26}
-        fontWeight={600}
-      >
+      <Typography color="lightly.main" fontSize={30} fontWeight={600}>
         Favorite Movie
       </Typography>
 
       {favoriteMovie.length && (
         <Swiper
           effect={"coverflow"}
-          spaceBetween={2}
-          slidesPerView={5}
+          spaceBetween={10}
+          slidesPerView={1.5}
           slidesPerGroup={1}
           coverflowEffect={{
-            rotate: 0,
+            rotate: 6,
             stretch: 0,
             depth: 50,
             modifier: 1,
           }}
-          centeredSlides={true}
-          modules={[EffectCoverflow]}
+          modules={[EffectCoverflow, Pagination]}
+          loop={true}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+            1024: {
+              slidesPerView: 5,
+              spaceBetween: 50,
+            },
+          }}
         >
           {favoriteMovie?.map((movieId) => (
             <SwiperSlide key={movieId}>

@@ -53,9 +53,8 @@ function SwiperBox({ value, label }) {
 
       <Swiper
         effect={"coverflow"}
-        grabCursor={true}
-        spaceBetween={1}
-        slidesPerView={5}
+        spaceBetween={10}
+        slidesPerView={1.5}
         slidesPerGroup={1}
         coverflowEffect={{
           rotate: 6,
@@ -64,6 +63,23 @@ function SwiperBox({ value, label }) {
           modifier: 1,
         }}
         modules={[EffectCoverflow, Pagination]}
+        autoplay={true}
+        loop={true}
+        mousewheel={false}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+          },
+        }}
       >
         {movies?.data?.results?.map((e) => (
           <SwiperSlide key={e.id}>

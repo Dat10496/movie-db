@@ -42,7 +42,7 @@ export default function MainHeader() {
           width: { xs: "100%", sm: "80%" },
           display: "flex",
           justifyContent: "space-between",
-          mt: { xs: 1.5, md: 0 },
+          mt: { xs: 1.5, sm: 0 },
           alignItems: "center",
         }}
       >
@@ -59,12 +59,12 @@ export default function MainHeader() {
           <Box
             sx={{
               display: {
-                sm: "none",
+                sm: "flex",
                 md: "flex",
-                xs: "none",
+                xs: "flex",
               },
               alignItems: "center",
-              width: 220,
+              width: { md: 220, sm: 120, lg: 250 },
               justifyContent: "space-between",
             }}
           >
@@ -73,14 +73,19 @@ export default function MainHeader() {
                 onClick={() => navigate("/favorite-movie")}
                 variant="outlined"
                 color="lightly"
+                sx={{
+                  display: { xs: "none", md: "flex", sm: "flex" },
+                  alignItems: "center",
+                }}
+                fontSize="small"
               >
                 <StarsRoundedIcon
-                  fontSize="large"
                   color="lightly"
                   sx={{
                     "&:hover": {
                       color: "fourthly.main",
                     },
+                    fontSize: { sm: 30, md: 40, lg: 40 },
                   }}
                 />
               </IconButton>
@@ -117,6 +122,7 @@ export default function MainHeader() {
               sx={{
                 color: "white",
                 mr: 1,
+                fontSize: { xs: 20, sm: 25, md: 30 },
               }}
             />
             <Typography
@@ -126,8 +132,9 @@ export default function MainHeader() {
                 "&:hover": {
                   color: "fourthly.main",
                 },
+                fontSize: { md: 16, xs: 14 },
+                fontWeight: { md: 550, xs: 450 },
               }}
-              fontWeight={550}
             >
               {user ? "Sign out" : "Sign in"}
             </Typography>

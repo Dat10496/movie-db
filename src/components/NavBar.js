@@ -33,8 +33,8 @@ function NavBar() {
           },
         }}
       >
-        {location.pathname !== "/favorite-movie" ||
-          (location.pathname === `/category/${value}` && (
+        {location.pathname !== `/category/${value}` &&
+          location.pathname !== "/favorite-movie" && (
             <>
               {ELEMENT_NAV.map((e, index) => (
                 <a key={index} href={`#${e.value}`} className="link-category">
@@ -54,7 +54,7 @@ function NavBar() {
                 </a>
               ))}
             </>
-          ))}
+          )}
       </Box>
 
       {location.pathname !== "/favorite-movie" && (
@@ -64,7 +64,13 @@ function NavBar() {
           color="lightly"
         >
           <Button onClick={(e) => setOpenMenu(e.currentTarget)}>
-            <MenuIcon fontSize="large" color="lightly" />
+            <MenuIcon
+              sx={{
+                fontSize: { xs: 25, sm: 30 },
+              }}
+              fontSize="large"
+              color="lightly"
+            />
           </Button>
 
           <Menu
@@ -80,7 +86,9 @@ function NavBar() {
                 </MenuItem>
               </a>
             ))}
-            <MenuItem onClick={() => handleToFavPage()}>Favorite Page</MenuItem>
+            <MenuItem onClick={() => handleToFavPage()}>
+              Favorite Movies
+            </MenuItem>
           </Menu>
         </Box>
       )}

@@ -12,7 +12,6 @@ function InputSearch() {
   return (
     <>
       <SearchIcon
-        fontSize="large"
         color="lightly"
         onClick={handleOpenSearch}
         sx={{
@@ -20,6 +19,7 @@ function InputSearch() {
             cursor: "pointer",
             color: "fourthly.main",
           },
+          fontSize: { sm: 30, xs: 20, md: 40, lg: 40 },
         }}
       />
       <Modal

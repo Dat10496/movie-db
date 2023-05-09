@@ -18,6 +18,7 @@ const iconStyle = {
     color: "fourthly.main",
   },
   mr: 1,
+  fontSize: { xs: 25, sm: 30, md: 35, lg: 40 },
 };
 
 function TrailerIntro() {
@@ -84,7 +85,7 @@ function TrailerIntro() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 width: 200,
-                display: { sm: "flex", xs: "none" },
+                display: { sm: "none", xs: "none", md: "flex" },
               }}
             >
               <CircularProgress
@@ -132,8 +133,8 @@ function TrailerIntro() {
               color="lightly"
               onClick={handlePlaying}
               sx={{
-                height: { sm: 50, xs: 30 },
-                width: { xs: 100 },
+                height: { sm: 40, xs: 30, md: 50, lg: 50 },
+                width: { xs: 80, lg: 120 },
               }}
             >
               {isPlaying ? (
@@ -154,7 +155,7 @@ function TrailerIntro() {
             position: "absolute",
             right: 0,
             bottom: { sm: "25%", xs: "40%", lg: "15%" },
-            width: { sm: 100, xs: 50 },
+            width: { sm: 100, xs: 30 },
             height: { sm: 50, xs: 30 },
             justifyContent: "flex-start",
           }}

@@ -21,7 +21,6 @@ function FavoriteMovieCard({ movieId, location, removeFavMovie }) {
         setMovie(response.data);
       } catch (error) {
         setError(error.message);
-        console.log(error, "error");
       }
     };
 

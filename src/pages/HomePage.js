@@ -45,7 +45,6 @@ function HomePages() {
         }
       } catch (error) {
         setError(error.message);
-        console.log(error, "error");
       }
 
       setLoading(false);
