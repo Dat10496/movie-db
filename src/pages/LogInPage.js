@@ -12,9 +12,11 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LockIcon from "@mui/icons-material/Lock";
 import { LoadingButton } from "@mui/lab";
+
+import "./LoginPage.css";
 import { FTextField, FormProvider } from "../components/form";
 import useAuth from "../hooks/useAuth";
-import backgroundImg from "../image/bgImg.jpg";
+import backgroundImg from "../image/img-login.png";
 
 const style = {
   display: "flex",
@@ -28,7 +30,7 @@ const defaultValues = {
   password: "123456",
 };
 
-function SignInPage() {
+function LogInPage() {
   let navigate = useNavigate();
   let location = useLocation();
   let auth = useAuth();
@@ -57,11 +59,11 @@ function SignInPage() {
   return (
     <Box
       sx={{
-        position: "fixed",
+        position: "relative",
+        minHeight: "100vh",
         top: 0,
         backgroundImage: `url(${backgroundImg})`,
-        backgroundSize: "100% 100%",
-        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
         height: "100%",
         width: "100%",
         m: 0,
@@ -70,15 +72,21 @@ function SignInPage() {
         alignItems: "center",
       }}
     >
+      <Box component="div" className="faded-div" />
+
       <Box
         sx={{
           p: 1,
-          width: 400,
-          height: 400,
+          width: 450,
+          height: 450,
+          borderTop: "0.1px solid white",
+          borderBottom: "0.1px solid white",
+          borderRadius: 3,
+          // filter: "brightness(120%)",
         }}
       >
         <Box sx={style}>
-          <LockIcon sx={{ fontSize: 30, color: "primary.lighter" }}></LockIcon>
+          <LockIcon sx={{ fontSize: 30, color: "lightly.main" }}></LockIcon>
         </Box>
         <Box sx={style}>
           <Typography variant="h4" sx={{ mb: 3, color: "#ffff" }}>
@@ -87,7 +95,7 @@ function SignInPage() {
         </Box>
 
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={3}>
+          <Stack sx={{ color: "#ffff" }} spacing={3}>
             <FTextField name="username" label="User name" />
             <FTextField
               name="password"
@@ -118,16 +126,19 @@ function SignInPage() {
             alignItems="space-between"
             sx={{ my: 2 }}
           ></Stack>
+
           <LoadingButton
             fullWidth
             size="large"
             type="submit"
             loading={isSubmitting}
             variant="contained"
-            sx={{ bgcolor: "primary.main" }}
+            sx={{ color: "lightly.main" }}
+            color="primary"
           >
             Sign In
           </LoadingButton>
+
           <Box
             sx={{
               display: "flex",
@@ -136,10 +147,10 @@ function SignInPage() {
               p: 2,
             }}
           >
-            <Typography variant="subtitle2" component="div" color="#ffff">
+            <Typography variant="subtitle2" color="lightly.main">
               Forget password?
             </Typography>
-            <Typography variant="subtitle2" component="div" color="#ffff">
+            <Typography variant="subtitle2" color="lightly.main">
               Don't have an account? Sign up
             </Typography>
           </Box>
@@ -149,4 +160,4 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+export default LogInPage;

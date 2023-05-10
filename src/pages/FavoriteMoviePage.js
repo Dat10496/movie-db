@@ -64,7 +64,11 @@ function FavoriteMoviePage() {
       )}
 
       {favoriteMovie.length === 0 && (
-        <Alert sx={{ width: 400 }} severity="info" color="info">
+        <Alert
+          sx={{ width: { md: 400, xs: "100%" } }}
+          severity="info"
+          color="info"
+        >
           There is empty favorite movie
         </Alert>
       )}

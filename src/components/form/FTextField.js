@@ -11,12 +11,27 @@ function FTextField({ name, ...other }) {
       render={({ field, fieldState: { error } }) => (
         <TextField
           focused
-          variant="filled"
+          variant="outlined"
           color="lightly"
-          {...field}
           fullWidth
           error={!!error}
           helperText={error?.message}
+          inputProps={{
+            style: {
+              color: "#ffff",
+            },
+          }}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              "&:hover fieldset": {
+                borderColor: "rgb(145, 148, 148)",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "lightly",
+              },
+            },
+          }}
+          {...field}
           {...other}
         />
       )}
