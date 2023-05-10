@@ -2,13 +2,7 @@ import { React, useEffect, useState } from "react";
 import InputBase from "@mui/material/InputBase";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import {
-  alpha,
-  Divider,
-  Pagination,
-  PaginationItem,
-  Typography,
-} from "@mui/material";
+import { alpha, Divider, Pagination, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 

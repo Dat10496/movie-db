@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import Typography from "@mui/material/Typography";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Box, Card, IconButton } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
@@ -9,8 +9,6 @@ import "./MovieCard.css";
 
 export default function MovieCard({ removeFavMovie, movie, location }) {
   const [content, setContent] = useState("none-display");
-
-  const { name } = useParams();
 
   return (
     <Box p={0} width={260} sx={{ position: "relative" }}>
