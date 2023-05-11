@@ -113,6 +113,11 @@ export default function DetailPage() {
                           variant="outlined"
                           color="lightly"
                           disabled={controlAddFavMovie}
+                          sx={{
+                            border: "1px solid white",
+                            width: 50,
+                            height: 50,
+                          }}
                         >
                           <StarsRoundedIcon
                             fontSize="large"

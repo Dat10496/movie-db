@@ -88,7 +88,7 @@ export default function MovieCard({ removeFavMovie, movie, location }) {
       {location === "/favorite-movie" && (
         <IconButton
           variant="outlined"
-          color="lightly"
+          color="fifthly"
           sx={{
             position: "absolute",
             right: 0,

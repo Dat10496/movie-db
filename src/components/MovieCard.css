@@ -1,22 +1,20 @@
 .display {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    background-image: linear-gradient(rgb(0, 0, 0), transparent);
-    width: 260px;
-    height: 70px;
-
+  display: block;
+  position: absolute;
+  bottom: 0;
+  background-image: linear-gradient(rgb(0, 0, 0), transparent);
+  width: 260px;
+  height: 70px;
 }
 
-
 .none-display {
-    display: none;
+  display: none;
 }
 
 .poster:hover {
-    filter: brightness(140%);
+  filter: brightness(140%);
 }
 
 .poster {
-    filter: brightness(120%);
+  filter: brightness(120%);
 }

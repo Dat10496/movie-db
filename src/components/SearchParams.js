@@ -35,9 +35,10 @@ const style = {
   backgroundColor: "#0c0d0d",
   color: "white",
   width: "100%",
-  height: "100%",
+  height: { md: "80%", lg: "80%", sm: "60%", xs: "70%" },
   p: 1,
   textDecoration: "none",
+  flexWrap: "wrap",
 };
 
 const Search = styled("div")(({ theme }) => ({
@@ -72,7 +73,7 @@ function SearchParams({ handleCloseSearch }) {
 
   const [storageData, setStorageData] = useState([]);
 
-  const limit = 10;
+  const limit = 6;
   const offset = limit * (page - 1);
 
   const handleChangePage = (event, value) => {
