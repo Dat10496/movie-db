@@ -61,25 +61,24 @@ function SwiperBox({ value, label }) {
           stretch: 0,
           depth: 50,
           modifier: 1,
+          slideShadows: true,
         }}
         modules={[EffectCoverflow, Pagination]}
-        autoplay={true}
-        loop={true}
-        mousewheel={false}
         breakpoints={{
           640: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 4,
+            slidesPerView: 3,
             spaceBetween: 40,
           },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: 4,
             spaceBetween: 50,
           },
         }}
+        className="mySwiper"
       >
         {movies?.data?.results?.map((e) => (
           <SwiperSlide key={e.id}>

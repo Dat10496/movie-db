@@ -11,7 +11,7 @@ import "./DetailPage.css";
 import LoadingScreen from "../components/LoadingScreen";
 import apiService from "../app/apiService";
 import { API_KEY, DOMAIN_IMG, DOMAIN_BACKDROP } from "../app/config";
-import TrailerPage from "../components/TrailerMovie";
+import TrailerMovie from "../components/TrailerMovie";
 import useAuth from "../hooks/useAuth";
 
 export default function DetailPage() {
@@ -233,15 +233,14 @@ export default function DetailPage() {
                       </Box>
                     </Box>
                   </Box>
-
-                  {openTrailer && (
-                    <TrailerPage
-                      open={openTrailer}
-                      handleClose={() => setOpenTrailer(false)}
-                      movieId={id}
-                    />
-                  )}
                 </div>
+                {openTrailer && (
+                  <TrailerMovie
+                    open={openTrailer}
+                    handleClose={() => setOpenTrailer(false)}
+                    movieId={id}
+                  />
+                )}
               </Box>
             </>
           )}

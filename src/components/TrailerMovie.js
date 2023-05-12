@@ -43,7 +43,7 @@ function TrailerMovie({ open, handleClose, movieId }) {
   return (
     <>
       {isLoading ? (
-        <LoadingScreen />
+        <LoadingScreen sx={{ position: "absolute", top: "50%", left: "50%" }} />
       ) : (
         <>
           <Modal

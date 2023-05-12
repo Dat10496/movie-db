@@ -33,9 +33,9 @@ function FavoriteMoviePage() {
             stretch: 0,
             depth: 50,
             modifier: 1,
+            slideShadows: true,
           }}
           modules={[EffectCoverflow, Pagination]}
-          loop={true}
           breakpoints={{
             640: {
               slidesPerView: 2,
@@ -46,10 +46,15 @@ function FavoriteMoviePage() {
               spaceBetween: 40,
             },
             1024: {
-              slidesPerView: 5,
+              slidesPerView: 4,
               spaceBetween: 50,
             },
+            1200: {
+              slidesPerView: 5,
+              spaceBetween: 55,
+            },
           }}
+          className="mySwiper"
         >
           {favoriteMovie?.map((movieId) => (
             <SwiperSlide key={movieId}>
