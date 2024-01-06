@@ -36,7 +36,9 @@ function HomePages() {
           setLoading(false);
         } else {
           response = await apiService.get(
-            `3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`
+            `3/movie/popular?api_key=${API_KEY}&language=en-US&page=${
+              page || 1
+            }`
           );
 
           setStorageData(response.data.results);
