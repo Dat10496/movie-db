@@ -2,7 +2,7 @@
 
 ## Demo
 
-- Link to the app: https://movie-dat-db.netlify.app/
+- Link to the app: https://movie-db-flix.netlify.app
 
 ## Feature
 
