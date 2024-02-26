@@ -43,7 +43,6 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {/* <MainHeader /> */}
         <Router />
       </ThemeProvider>
     </div>

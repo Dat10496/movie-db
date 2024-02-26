@@ -8,7 +8,8 @@
 
 .wrapped-container {
     position: relative;
-
+    margin-top: 55px;
+        margin-bottom: 20px;
 }
 
 .box-content {
@@ -30,7 +31,7 @@
 
     .wrapped-container {
         height: 600px;
-
+        margin-top: 0px;
     }
 
     .box-content {
@@ -53,6 +54,7 @@
 @media screen and (min-width: 541px) {
     .wrapped-container {
         height: 520px;
+
     }
 
 

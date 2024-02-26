@@ -1,8 +1,25 @@
 import React, { useState } from "react";
-import { Modal } from "@mui/material";
+import { Modal, Tooltip } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 import SearchParams from "./SearchParams";
+
+const styles = {
+  searchIcon: {
+    "&: hover": {
+      cursor: "pointer",
+      color: "fourthly.main",
+    },
+    mr: 1,
+    fontSize: 25,
+  },
+  modal: {
+    width: { md: "100%", xs: "100%" },
+    height: { md: "72%", xs: "100%" },
+    flexWrap: "wrap",
+  },
+}; 
+
 
 function InputSearch() {
   const [openSearch, setOpenSearch] = useState(false);
@@ -11,26 +28,14 @@ function InputSearch() {
 
   return (
     <>
-      <SearchIcon
-        color="lightly"
-        onClick={handleOpenSearch}
-        sx={{
-          "&: hover": {
-            cursor: "pointer",
-            color: "fourthly.main",
-          },
-          fontSize: { sm: 30, xs: 20, md: 40, lg: 40 },
-        }}
-      />
-      <Modal
-        onClose={handleCloseSearch}
-        open={openSearch}
-        sx={{
-          width: { md: "100%", xs: "100%" },
-          height: { md: "72%", xs: "100%" },
-          flexWrap: "wrap",
-        }}
-      >
+      <Tooltip title="Search Movie">
+        <SearchIcon
+          color="lightly"
+          onClick={handleOpenSearch}
+          sx={styles.searchIcon}
+        />
+      </Tooltip>
+      <Modal onClose={handleCloseSearch} open={openSearch} sx={styles.modal}>
         <SearchParams handleCloseSearch={handleCloseSearch} />
       </Modal>
     </>

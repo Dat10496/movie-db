@@ -7,6 +7,41 @@ import { ELEMENT_NAV, API_KEY } from "../app/config";
 import LoadingScreen from "../components/LoadingScreen";
 import MovieCard from "../components/MovieCard";
 
+
+const styles = {
+  typoLabel: {
+    color: "lightly.main",
+    fontSize: 30,
+    fontWeight: 600,
+    pl: 5,
+    fontStyle: "italic",
+  },
+  boxCover: {
+    display: "flex",
+    flexDirection: { xs: "column", sm: "row" },
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  grid: {
+    width: "90%",
+    display: "flex",
+    flexDirection: { xs: "column", sm: "row" },
+    alignItems: "center",
+    mt: { xs: 2, sm: 0 },
+  },
+  boxCoverPag: {
+    display: "flex",
+    justifyContent: "center",
+    backgroundColor: "inherit",
+    mt: 2,
+  },
+  pagination: {
+    "& .MuiPaginationItem-root": {
+      color: "#ffff",
+    },
+  },
+};
+
 function CategoryPage() {
   const [movies, setMovies] = useState();
   const [loading, setLoading] = useState(true);
@@ -59,34 +94,10 @@ function CategoryPage() {
         <>
           {error && <Alert severity="error">{error}</Alert>}
 
-          <Typography
-            color="lightly.main"
-            fontSize={30}
-            fontWeight={600}
-            pl={5}
-            fontStyle="italic"
-          >
-            {label}
-          </Typography>
+          <Typography sx={styles.typoLabel}>{label}</Typography>
 
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", sm: "row" },
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Grid
-              container
-              sx={{
-                width: "90%",
-                display: "flex",
-                flexDirection: { xs: "column", sm: "row" },
-                alignItems: "center",
-                mt: { xs: 2, sm: 0 },
-              }}
-            >
+          <Box sx={styles.boxCover}>
+            <Grid container sx={styles.grid}>
               {movies?.map((movie) => (
                 <Grid key={movie.id} item sm={5} xs={20} md={4} lg={3}>
                   <MovieCard movie={movie} />
@@ -95,23 +106,12 @@ function CategoryPage() {
             </Grid>
           </Box>
 
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              backgroundColor: "inherit",
-              mt: 2,
-            }}
-          >
+          <Box sx={styles.boxCoverPag}>
             <Pagination
               page={page}
               color="thirdly"
               count={totalPage}
-              sx={{
-                "& .MuiPaginationItem-root": {
-                  color: "#ffff",
-                },
-              }}
+              sx={styles.pagination}
               onChange={handleChangePage}
             />
           </Box>

@@ -70,67 +70,6 @@ function HomePages() {
               </Box>
             ))}
           </Box>
-
-          {/* <Box
-            sx={{
-              display: { sm: "flex", xs: "block" },
-              width: { md: "100%" },
-              justifyContent: "space-between",
-              mt: 2,
-              p: 2,
-            }}
-          >
-            <GenresList nameOfGenre={name} />
-
-            <Grid
-              container
-              sx={{
-                width: { xs: "100%", md: 950 },
-                display: { xs: "flex" },
-                flexDirection: { xs: "column", sm: "row" },
-                justifyContent: "center",
-                alignItems: "center",
-                mt: { xs: 2, sm: 0 },
-              }}
-            >
-              {storageData.map((movie) => (
-                <Grid key={movie.id} item sm={5} xs={20} md={4} lg={3}>
-                  <MovieCard movie={movie} />
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              p: 1.5,
-              backgroundColor: "inherit",
-            }}
-          >
-            <Pagination
-              page={parseInt(page) || 1}
-              color="thirdly"
-              count={totalPage}
-              sx={{
-                "& .MuiPaginationItem-root": {
-                  color: "#ffff",
-                },
-              }}
-              renderItem={(item) => (
-                <PaginationItem
-                  component={RouterLink}
-                  to={
-                    name
-                      ? `/genres/${name}/page/${item.page}`
-                      : `/page/${item.page}`
-                  }
-                  {...item}
-                />
-              )}
-            />
-          </Box> */}
         </>
       )}
     </Stack>

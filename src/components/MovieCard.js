@@ -7,6 +7,45 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { DOMAIN_IMG } from "../app/config";
 import "./MovieCard.css";
 
+
+const styles = {
+  card: {
+    height: "100%",
+    width: 260,
+    m: 1,
+    flexWrap: "wrap",
+    display: "flex",
+    textDecoration: "none",
+    justifyContent: "flex-start",
+    p: 0,
+    borderRadius: 3,
+    "&: hover": {
+      border: "1px solid #d50000",
+    },
+    position: "relative",
+  },
+  boxCoverContent: {
+    height: 100,
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    p: 0.2,
+  },
+  boxCoverTypo: {
+    height: 12,
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    pr: 1,
+  },
+  iconBtn: {
+    position: "absolute",
+    right: 0,
+    top: 0,
+  },
+};
+
 export default function MovieCard({ removeFavMovie, movie, location }) {
   const [content, setContent] = useState("none-display");
 
@@ -15,21 +54,7 @@ export default function MovieCard({ removeFavMovie, movie, location }) {
       <Card
         onMouseEnter={() => setContent("display")}
         onMouseLeave={() => setContent("none-display")}
-        sx={{
-          height: "100%",
-          width: 260,
-          m: 1,
-          flexWrap: "wrap",
-          display: "flex",
-          textDecoration: "none",
-          justifyContent: "flex-start",
-          p: 0,
-          borderRadius: 3,
-          "&: hover": {
-            border: "1px solid #d50000",
-          },
-          position: "relative",
-        }}
+        sx={styles.card}
         component={Link}
         to={`movies/${movie.id}`}
         id={movie.id}
@@ -42,16 +67,7 @@ export default function MovieCard({ removeFavMovie, movie, location }) {
         />
 
         <div className={content}>
-          <Box
-            sx={{
-              height: 100,
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              p: 0.2,
-            }}
-          >
+          <Box sx={styles.boxCoverContent}>
             <Typography
               color="lightly.main"
               fontWeight={700}
@@ -62,15 +78,7 @@ export default function MovieCard({ removeFavMovie, movie, location }) {
             </Typography>
 
             <Box sx={{ height: 100 }}>
-              <Box
-                sx={{
-                  height: 12,
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  alignItems: "center",
-                  pr: 1,
-                }}
-              >
+              <Box sx={styles.boxCoverTypo}>
                 <Typography
                   fontWeight={700}
                   fontSize={14}
@@ -89,11 +97,7 @@ export default function MovieCard({ removeFavMovie, movie, location }) {
         <IconButton
           variant="outlined"
           color="fifthly"
-          sx={{
-            position: "absolute",
-            right: 0,
-            top: 0,
-          }}
+          sx={styles.iconBtn}
           onClick={() => removeFavMovie(movie.id)}
         >
           <HighlightOffIcon color="lightly" />

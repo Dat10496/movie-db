@@ -13,16 +13,52 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LockIcon from "@mui/icons-material/Lock";
 import { LoadingButton } from "@mui/lab";
 
-import "./LoginPage.css";
+
 import { FTextField, FormProvider } from "../components/form";
 import useAuth from "../hooks/useAuth";
 import backgroundImg from "../image/img-login.png";
 
-const style = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  p: 1,
+const styles = {
+  boxWrapIconSigIn: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    p: 1,
+    color: "lightly.main",
+  },
+  boxCover: {
+    position: "relative",
+    minHeight: "100vh",
+    top: 0,
+    backgroundImage: `url(${backgroundImg})`,
+    backgroundSize: "cover",
+    height: "100%",
+    width: "100%",
+    m: 0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "lightly.main",
+  },
+  boxWrap: {
+    p: 1,
+    width: 450,
+    height: 450,
+    borderTop: "0.1px solid white",
+    borderBottom: "0.1px solid white",
+    borderRadius: 3,
+  },
+  boxCoverTypoBottom: {
+    display: "flex",
+    justifyContent: "space-between",
+    p: 2,
+  },
+  typoBottom: {
+    "&:hover": {
+      cursor: "pointer",
+      color: "thirdly.main",
+    },
+  },
 };
 
 const defaultValues = {
@@ -57,45 +93,21 @@ function LogInPage() {
   };
 
   return (
-    <Box
-      sx={{
-        position: "relative",
-        minHeight: "100vh",
-        top: 0,
-        backgroundImage: `url(${backgroundImg})`,
-        backgroundSize: "cover",
-        height: "100%",
-        width: "100%",
-        m: 0,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <Box sx={styles.boxCover}>
       <Box component="div" className="faded-div" />
 
-      <Box
-        sx={{
-          p: 1,
-          width: 450,
-          height: 450,
-          borderTop: "0.1px solid white",
-          borderBottom: "0.1px solid white",
-          borderRadius: 3,
-          // filter: "brightness(120%)",
-        }}
-      >
-        <Box sx={style}>
-          <LockIcon sx={{ fontSize: 30, color: "lightly.main" }}></LockIcon>
+      <Box sx={styles.boxWrap}>
+        <Box sx={styles.boxWrapIconSigIn}>
+          <LockIcon sx={{ fontSize: 30 }}></LockIcon>
         </Box>
-        <Box sx={style}>
-          <Typography variant="h4" sx={{ mb: 3, color: "#ffff" }}>
-            Log In
+        <Box sx={styles.boxWrapIconSigIn}>
+          <Typography variant="h4" mb={3}>
+            Sign In
           </Typography>
         </Box>
 
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <Stack sx={{ color: "#ffff" }} spacing={3}>
+          <Stack spacing={3} mb={4}>
             <FTextField name="username" label="User name" />
             <FTextField
               name="password"
@@ -120,12 +132,6 @@ function LogInPage() {
               }}
             />
           </Stack>
-          <Stack
-            direction="row"
-            justifyContent="center"
-            alignItems="space-between"
-            sx={{ my: 2 }}
-          ></Stack>
 
           <LoadingButton
             fullWidth
@@ -139,18 +145,11 @@ function LogInPage() {
             Sign In
           </LoadingButton>
 
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              color: "primary.main",
-              p: 2,
-            }}
-          >
-            <Typography variant="subtitle2" color="lightly.main">
+          <Box sx={styles.boxCoverTypoBottom}>
+            <Typography sx={styles.typoBottom} variant="subtitle2">
               Forget password?
             </Typography>
-            <Typography variant="subtitle2" color="lightly.main">
+            <Typography sx={styles.typoBottom} variant="subtitle2">
               Don't have an account? Sign up
             </Typography>
           </Box>
