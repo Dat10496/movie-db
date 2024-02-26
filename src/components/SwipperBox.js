@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination } from "swiper";
+import { Pagination } from "swiper";
 import { useNavigate } from "react-router-dom";
+import { Button, Typography } from "@mui/material";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -10,7 +11,17 @@ import "swiper/css/pagination";
 import apiService from "../app/apiService";
 import { API_KEY } from "../app/config";
 import MovieCard from "./MovieCard";
-import { Button, Typography } from "@mui/material";
+
+const styles = {
+  typo: {
+    "&: hover": {
+      color: "fourthly.main",
+    },
+    fontSize: 20,
+    fontWeight: 600,
+    color: "lightly.main",
+  },
+};
 
 function SwiperBox({ value, label }) {
   const [movies, setMovies] = useState();
@@ -37,18 +48,7 @@ function SwiperBox({ value, label }) {
         color="lightly"
         onClick={() => navigate(`/category/${value}`)}
       >
-        <Typography
-          sx={{
-            "&: hover": {
-              color: "fourthly.main",
-            },
-          }}
-          color="lightly.main"
-          fontSize={20}
-          fontWeight={600}
-        >
-          {label}
-        </Typography>
+        <Typography sx={styles.typo}>{label}</Typography>
       </Button>
 
       <Swiper
@@ -56,14 +56,7 @@ function SwiperBox({ value, label }) {
         spaceBetween={10}
         slidesPerView={1.5}
         slidesPerGroup={1}
-        coverflowEffect={{
-          rotate: 6,
-          stretch: 0,
-          depth: 50,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        modules={[EffectCoverflow, Pagination]}
+        modules={[Pagination]}
         breakpoints={{
           640: {
             slidesPerView: 2,

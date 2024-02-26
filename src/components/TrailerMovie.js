@@ -12,6 +12,20 @@ import apiService from "../app/apiService";
 import { API_KEY } from "../app/config";
 import LoadingScreen from "../components/LoadingScreen";
 
+const styles = {
+  loadingScreen: { position: "absolute", top: "50%", left: "50%" },
+  modal: {
+    backgroundColor: "transparent",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  boxWrapSwiper: {
+    width: { md: 560, xs: "100%" },
+    height: 325,
+  },
+};
+
 function TrailerMovie({ open, handleClose, movieId }) {
   const [dataVideo, setDataVideo] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,32 +57,18 @@ function TrailerMovie({ open, handleClose, movieId }) {
   return (
     <>
       {isLoading ? (
-        <LoadingScreen sx={{ position: "absolute", top: "50%", left: "50%" }} />
+        <LoadingScreen sx={styles.loadingScreen} />
       ) : (
         <>
-          <Modal
-            sx={{
-              backgroundColor: "transparent",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            open={open}
-            onClose={handleClose}
-          >
+          <Modal sx={styles.modal} open={open} onClose={handleClose}>
             {error ? (
               <Alert severity="error">{error}</Alert>
             ) : (
               <>
-                {dataVideo.length === 0 ? (
+                {!dataVideo.length ? (
                   <Alert severity="error">There is not available video</Alert>
                 ) : (
-                  <Box
-                    sx={{
-                      width: { md: 560, xs: "100%" },
-                      height: 325,
-                    }}
-                  >
+                  <Box sx={styles.boxWrapSwiper}>
                     <Swiper
                       cssMode={true}
                       navigation={true}

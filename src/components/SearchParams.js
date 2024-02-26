@@ -5,10 +5,10 @@ import styled from "@emotion/styled";
 import { alpha, Divider, Pagination, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
+import { Box } from "@mui/system";
 
 import apiService from "../app/apiService";
 import { API_KEY, DOMAIN_IMG } from "../app/config";
-import { Box } from "@mui/system";
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: "100%",
@@ -28,17 +28,44 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const style = {
-  position: "absolute",
-  top: 0,
-  left: 0,
-  backgroundColor: "#0c0d0d",
-  color: "white",
-  width: "100%",
-  height: { md: "80%", lg: "80%", sm: "60%", xs: "70%" },
-  p: 1,
-  textDecoration: "none",
-  flexWrap: "wrap",
+const styles = {
+  boxCover: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    backgroundColor: "#0c0d0d",
+    color: "white",
+    width: "100%",
+    height: { md: "80%", lg: "80%", sm: "60%", xs: "70%" },
+    p: 1,
+    textDecoration: "none",
+    flexWrap: "wrap",
+  },
+  search: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    p: 0.5,
+  },
+  boxCoverData: {
+    display: "flex",
+    flexWrap: "wrap",
+    p: 1,
+    ml: 1,
+    flexDirection: "column",
+    textDecoration: "none",
+    color: "white",
+  },
+  boxWrapTypo: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    mb: 1,
+  },
+  boxCoverPag: {
+    justifyContent: "center",
+    display: "flex",
+  },
 };
 
 const Search = styled("div")(({ theme }) => ({
@@ -97,7 +124,7 @@ function SearchParams({ handleCloseSearch }) {
   }, [query]);
 
   return (
-    <Box sx={style}>
+    <Box sx={styles.boxCover}>
       <Search
         value={searchParams.get("query") || ""}
         onChange={(event) => {
@@ -109,12 +136,7 @@ function SearchParams({ handleCloseSearch }) {
             setSearchParams({});
           }
         }}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          p: 0.5,
-        }}
+        sx={styles.search}
       >
         <SearchIconWrapper>
           <SearchIcon />
@@ -126,27 +148,9 @@ function SearchParams({ handleCloseSearch }) {
         />
       </Search>
       <Divider variant="middle" color="primary.dark" sx={{ mt: 1 }} />
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          p: 1,
-          ml: 1,
-          flexDirection: "column",
-          textDecoration: "none",
-          color: "white",
-        }}
-      >
+      <Box sx={styles.boxCoverData}>
         {storageData?.slice(offset, offset + limit).map((movie) => (
-          <Box
-            key={movie.id}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              mb: 1,
-            }}
-          >
+          <Box key={movie.id} sx={styles.boxWrapTypo}>
             <Typography
               component={Link}
               to={`/movies/${movie.id}`}
@@ -167,12 +171,7 @@ function SearchParams({ handleCloseSearch }) {
       </Box>
 
       {query && (
-        <Box
-          sx={{
-            justifyContent: "center",
-            display: "flex",
-          }}
-        >
+        <Box sx={styles.boxCoverPag}>
           <Pagination
             count={Math.ceil(storageData.length / limit)}
             variant="outlined"

@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, EffectCoverflow } from "swiper";
+import { Pagination } from "swiper";
 import { Alert, Box, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
@@ -28,14 +28,7 @@ function FavoriteMoviePage() {
           spaceBetween={10}
           slidesPerView={1.5}
           slidesPerGroup={1}
-          coverflowEffect={{
-            rotate: 6,
-            stretch: 0,
-            depth: 50,
-            modifier: 1,
-            slideShadows: true,
-          }}
-          modules={[EffectCoverflow, Pagination]}
+          modules={[Pagination]}
           breakpoints={{
             640: {
               slidesPerView: 2,
@@ -48,10 +41,6 @@ function FavoriteMoviePage() {
             1024: {
               slidesPerView: 4,
               spaceBetween: 50,
-            },
-            1200: {
-              slidesPerView: 5,
-              spaceBetween: 55,
             },
           }}
           className="mySwiper"
@@ -68,7 +57,7 @@ function FavoriteMoviePage() {
         </Swiper>
       )}
 
-      {favoriteMovie.length === 0 && (
+      {!favoriteMovie.length && (
         <Alert
           sx={{ width: { md: 400, xs: "100%" } }}
           severity="info"

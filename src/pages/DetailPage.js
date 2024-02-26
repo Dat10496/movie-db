@@ -14,6 +14,66 @@ import { API_KEY, DOMAIN_IMG, DOMAIN_BACKDROP } from "../app/config";
 import TrailerMovie from "../components/TrailerMovie";
 import useAuth from "../hooks/useAuth";
 
+const styles = {
+  boxFaded: {
+    display: "flex",
+    width: { md: "85%", xs: "100%" },
+    height: { xs: "100%" },
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    flexDirection: { xs: "column", md: "row" },
+  },
+  boxImg: { height: { md: 400, xs: 300 }, borderRadius: 3 },
+  boxCoverDetail: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  btnAddFav: {
+    border: "1px solid white",
+    width: 50,
+    height: 50,
+    color: "lightly.main",
+  },
+  typoDate: {
+    fontSize: 15,
+    fontStyle: "italic",
+    color: "fifthly.lighter",
+    fontWeight: 200,
+    display: "flex",
+    alignItems: "center",
+  },
+
+  boxCoverBottom: {
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: 320,
+    display: "flex",
+  },
+  boxWrapCir: {
+    position: "relative",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: 150,
+  },
+  boxWrapTypoRate: {
+    top: 0,
+    left: 0,
+    bottom: 0,
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 50,
+    height: 50,
+    display: "flex",
+  },
+  typoDataScore: {
+    fontSize: 14,
+    color: "thirdly.main",
+    fontWeight: 500,
+  },
+};
+
 export default function DetailPage() {
   const [loading, setLoading] = useState(true);
   const [openTrailer, setOpenTrailer] = useState(false);
@@ -69,37 +129,23 @@ export default function DetailPage() {
                 sx={{
                   width: { md: "100%", xs: "100%" },
                   minHeight: { md: "100vh", xs: 900 },
-                  backgroundImage: `url("${DOMAIN_BACKDROP}${movieDetail.backdrop_path}")`,
+                  backgroundImage: `url('${DOMAIN_BACKDROP}${movieDetail.backdrop_path}')`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                   position: "relative",
                 }}
               >
                 <div className="faded-detail-box">
-                  <Box
-                    sx={{
-                      display: "flex",
-                      width: { md: "85%", xs: "100%" },
-                      height: { xs: "100%" },
-                      justifyContent: "space-evenly",
-                      alignItems: "center",
-                      flexDirection: { xs: "column", md: "row" },
-                    }}
-                  >
+                  <Box sx={styles.boxFaded}>
                     <Box
                       component="img"
-                      sx={{ height: { md: 400, xs: 300 }, borderRadius: 3 }}
+                      sx={styles.boxImg}
                       src={`${DOMAIN_IMG}${movieDetail.poster_path}`}
                       alt={movieDetail.title}
                     />
 
                     <Box className="content-detail-box">
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
+                      <Box sx={styles.boxCoverDetail}>
                         <Typography
                           color="lightly.main"
                           fontSize={35}
@@ -111,13 +157,8 @@ export default function DetailPage() {
                         <Button
                           onClick={() => handleAddFavMovie(movieDetail.id)}
                           variant="outlined"
-                          color="lightly"
                           disabled={controlAddFavMovie}
-                          sx={{
-                            border: "1px solid white",
-                            width: 50,
-                            height: 50,
-                          }}
+                          sx={styles.btnAddFav}
                         >
                           <StarsRoundedIcon
                             fontSize="large"
@@ -127,13 +168,7 @@ export default function DetailPage() {
                       </Box>
 
                       <Box display="flex" alignItems="center">
-                        <Typography
-                          fontSize={15}
-                          fontStyle="italic"
-                          color="fifthly.lighter"
-                          fontWeight={200}
-                          sx={{ display: "flex", alignItems: "center" }}
-                        >
+                        <Typography sx={styles.typoDate}>
                           Date Release:
                         </Typography>
                         <Typography ml={0.5} color="sixthly.main">
@@ -165,47 +200,16 @@ export default function DetailPage() {
                         {movieDetail.overview}
                       </Typography>
 
-                      <Box
-                        sx={{
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          width: 320,
-                          display: "flex",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            position: "relative",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            width: 150,
-                          }}
-                        >
+                      <Box sx={styles.boxCoverBottom}>
+                        <Box sx={styles.boxWrapCir}>
                           <CircularProgress
                             variant="determinate"
                             value={80}
                             color="thirdly"
                             size={50}
                           />
-                          <Box
-                            sx={{
-                              top: 0,
-                              left: 0,
-                              bottom: 0,
-                              position: "absolute",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              width: 50,
-                              height: 50,
-                              display: "flex",
-                            }}
-                          >
-                            <Typography
-                              fontSize={14}
-                              color="thirdly.main"
-                              fontWeight={500}
-                            >
+                          <Box sx={styles.boxWrapTypoRate}>
+                            <Typography sx={styles.typoDataScore}>
                               {Math.floor(movieDetail.vote_average * 10)}%
                             </Typography>
                           </Box>
@@ -225,7 +229,7 @@ export default function DetailPage() {
                           sx={{ width: 110, height: 45 }}
                           onClick={() => setOpenTrailer(true)}
                         >
-                          <YouTubeIcon fontSize="large" />
+                          <YouTubeIcon />
                           <Typography fontSize={14} fontWeight={600}>
                             Trailer
                           </Typography>

@@ -10,15 +10,64 @@ import CircularProgress from "@mui/material/CircularProgress";
 import "./TrailerIntro.css";
 import { URL_TRAILER } from "../app/config";
 import logoTrailer from "../image/logo-trailer.png";
-import MainHeader from "./MainHeader";
 
-const iconStyle = {
-  color: "lightly.main",
-  "&:hover": {
-    color: "fourthly.main",
+const styles = {
+  icon: {
+    color: "lightly.main",
+    "&:hover": {
+      color: "fourthly.main",
+    },
+    mr: 1,
+    fontSize: { xs: 25, sm: 30, md: 35, lg: 40 },
   },
-  mr: 1,
-  fontSize: { xs: 25, sm: 30, md: 35, lg: 40 },
+  typoContent: {
+    fontSize: { xs: 10, sm: 12, md: 14, lg: 20 },
+    color: "lightly.main",
+    fontStyle: "italic",
+    fontWeight: 400,
+  },
+  boxCoverBtn: {
+    position: { xs: "absolute", sm: "relative", lg: "relative" },
+    display: "flex",
+    justifyContent: { sm: "space-between", xs: "flex-end" },
+    alignItems: "center",
+    top: { xs: 0, sm: "none" },
+    width: "100%",
+  },
+  boxWrapCir: {
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: 200,
+    display: { sm: "none", xs: "none", md: "flex" },
+  },
+  boxCoverScore: {
+    top: 0,
+    left: 0,
+    bottom: 0,
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 70,
+    height: 70,
+    display: "flex",
+  },
+  typoRateScore: {
+    fontWeight: 700,
+    fontStyle: "italic",
+    color: "lightly.main",
+  },
+  btnPlay: {
+    height: { sm: 40, xs: 30, md: 50, lg: 50 },
+    width: { xs: 80, lg: 120 },
+  },
+  btnMute: {
+    position: "absolute",
+    right: 0,
+    bottom: { sm: "25%", xs: "40%", lg: "15%" },
+    width: { sm: 100, xs: 30 },
+    height: { sm: 50, xs: 30 },
+    justifyContent: "flex-start",
+  },
 };
 
 function TrailerIntro() {
@@ -48,20 +97,9 @@ function TrailerIntro() {
         <div className="faded-box"></div>
 
         <div className="box-content">
-          <img
-            src={logoTrailer}
-            alt="logo"
-            width="400"
-            height="200"
-            className="logo-img"
-          />
+          <img src={logoTrailer} alt="logo" width="100%" className="logo-img" />
 
-          <Typography
-            color="lightly.main"
-            variant="h6"
-            fontStyle="italic"
-            fontSize={{ xs: 14, sm: 14, md: 14, lg: 20 }}
-          >
+          <Typography variant="h6" sx={styles.typoContent}>
             With the price on his head ever increasing, John Wick uncovers a
             path to defeating The High Table. But before he can earn his
             freedom, Wick must face off against a new enemy with powerful
@@ -69,25 +107,8 @@ function TrailerIntro() {
             foes.
           </Typography>
 
-          <Box
-            className="box-button-circle"
-            sx={{
-              position: { xs: "absolute", sm: "relative", lg: "relative" },
-              display: "flex",
-              justifyContent: { sm: "space-between", xs: "flex-end" },
-              alignItems: "center",
-              top: { xs: 0, sm: "none" },
-              width: "100%",
-            }}
-          >
-            <Box
-              sx={{
-                alignItems: "center",
-                justifyContent: "space-between",
-                width: 200,
-                display: { sm: "none", xs: "none", md: "flex" },
-              }}
-            >
+          <Box className="box-button-circle" sx={styles.boxCoverBtn}>
+            <Box sx={styles.boxWrapCir}>
               <CircularProgress
                 variant="determinate"
                 value={80}
@@ -95,35 +116,13 @@ function TrailerIntro() {
                 size={70}
               />
 
-              <Box
-                sx={{
-                  top: 0,
-                  left: 0,
-                  bottom: 0,
-                  position: "absolute",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: 70,
-                  height: 70,
-                  display: "flex",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  component="div"
-                  color="sixthly.main"
-                  fontWeight={800}
-                >
+              <Box sx={styles.boxCoverScore}>
+                <Typography variant="h6" color="sixthly.main" fontWeight={800}>
                   80%
                 </Typography>
               </Box>
 
-              <Typography
-                variant="h6"
-                fontWeight={700}
-                fontStyle="italic"
-                color="lightly.main"
-              >
+              <Typography variant="h6" sx={styles.typoRateScore}>
                 Rate Score
               </Typography>
             </Box>
@@ -132,15 +131,12 @@ function TrailerIntro() {
               variant="outlined"
               color="lightly"
               onClick={handlePlaying}
-              sx={{
-                height: { sm: 40, xs: 30, md: 50, lg: 50 },
-                width: { xs: 80, lg: 120 },
-              }}
+              sx={styles.btnPlay}
             >
               {isPlaying ? (
-                <PauseCircleIcon sx={iconStyle} fontSize="large" />
+                <PauseCircleIcon sx={styles.icon} fontSize="large" />
               ) : (
-                <PlayCircleIcon sx={iconStyle} fontSize="large" />
+                <PlayCircleIcon sx={styles.icon} fontSize="large" />
               )}
               PLAY
             </Button>
@@ -151,23 +147,14 @@ function TrailerIntro() {
           variant="outlined"
           color="lightly"
           onClick={handleIsMuted}
-          sx={{
-            position: "absolute",
-            right: 0,
-            bottom: { sm: "25%", xs: "40%", lg: "15%" },
-            width: { sm: 100, xs: 30 },
-            height: { sm: 50, xs: 30 },
-            justifyContent: "flex-start",
-          }}
+          sx={styles.btnMute}
         >
           {isMuted ? (
-            <VolumeOffIcon sx={iconStyle} fontSize="large" />
+            <VolumeOffIcon sx={styles.icon} fontSize="large" />
           ) : (
-            <VolumeUpIcon sx={iconStyle} fontSize="large" />
+            <VolumeUpIcon sx={styles.icon} fontSize="large" />
           )}
         </Button>
-
-        <MainHeader />
       </div>
     </>
   );
