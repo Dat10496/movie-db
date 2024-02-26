@@ -10,8 +10,10 @@
 
 - In this app you have to login and then you can see many features movie and read detail about it. Such as: Rating, Day release, Overview,..
 
+- Watch trailer each movie in detail page
+
 - You can log-in with any name or password
 
-## HOW TO START
+- Search movie by names, add your favorite movies
 
-- in the app directory, run: `npm install && npm start`
+
